@@ -17,11 +17,21 @@ import java.util.stream.Stream;
 public class BankManagement {
     public static void main(String[] args) {
         List<BankAccounts> list = new ArrayList<>();
-        list.add(new BankAccounts(1234567891234L,23400.50,"Hari"));
-        list.add(new BankAccounts(1234564534545L,53400.50,"Aswathi"));
+        list.add(new BankAccounts(1234567891234L,123400.50,"Hari"));
+        list.add(new BankAccounts(1234564534545L,13400.50,"Aswathi"));
         list.add(new BankAccounts(1908743847348L,123400.50,"Ranjith"));
         Stream<BankAccounts> bankAccountsStream = list.stream().sorted(Comparator.comparing(o -> o.accountHolderName));
         Iterator<BankAccounts> bankAccountsIterator=bankAccountsStream.iterator();
+        while (bankAccountsIterator.hasNext()){
+            System.out.println(bankAccountsIterator.next());
+        }
+        Stream<BankAccounts> bankAccountsStream1=list.stream().sorted(Comparator.comparing(new Function<BankAccounts, Double>() {
+            @Override
+            public Double apply(BankAccounts bankAccounts) {
+                return bankAccounts.accountBalance;
+            }
+        }));
+        bankAccountsIterator=bankAccountsStream1.iterator();
         while (bankAccountsIterator.hasNext()){
             System.out.println(bankAccountsIterator.next());
         }
