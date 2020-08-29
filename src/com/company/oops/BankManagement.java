@@ -6,6 +6,7 @@ package com.company.oops;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -21,7 +22,10 @@ public class BankManagement {
         Stream<BankAccounts> bankAccountsStream = list.stream().sorted((o1,o2)->{
             return o1.accountHolderName.compareTo(o2.accountHolderName);
         });
-        System.out.println(bankAccountsStream.iterator().next());
+        Iterator<BankAccounts> bankAccountsIterator=bankAccountsStream.iterator();
+        while (bankAccountsIterator.hasNext()){
+            System.out.println(bankAccountsIterator.next());
+        }
 
     }
 }
