@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
@@ -19,9 +20,7 @@ public class BankManagement {
         list.add(new BankAccounts(1234567891234L,23400.50,"Hari"));
         list.add(new BankAccounts(1234564534545L,53400.50,"Aswathi"));
         list.add(new BankAccounts(1908743847348L,123400.50,"Ranjith"));
-        Stream<BankAccounts> bankAccountsStream = list.stream().sorted((o1,o2)->{
-            return o1.accountHolderName.compareTo(o2.accountHolderName);
-        });
+        Stream<BankAccounts> bankAccountsStream = list.stream().sorted(Comparator.comparing(o -> o.accountHolderName));
         Iterator<BankAccounts> bankAccountsIterator=bankAccountsStream.iterator();
         while (bankAccountsIterator.hasNext()){
             System.out.println(bankAccountsIterator.next());
