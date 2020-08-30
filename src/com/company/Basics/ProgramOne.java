@@ -22,6 +22,7 @@ public class ProgramOne {
         System.out.println(a+" "+b);
         Scanner scanner = new Scanner(b).useDelimiter(":");
         System.out.println(scanner.nextInt());
+        System.out.println(scanner.next());
 
 
 
