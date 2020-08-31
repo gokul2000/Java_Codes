@@ -4,6 +4,8 @@
 
 package com.company.NetworkingConcepts;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -21,6 +23,9 @@ public class SocketClient {
         PrintWriter printWriter = new PrintWriter(outputStreamWriter);
         printWriter.println(str);
         printWriter.flush();
+        BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+        String sr =br.readLine();
+        System.out.println("Server :"+sr);
 
     }
 }

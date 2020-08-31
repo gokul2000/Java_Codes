@@ -27,6 +27,7 @@ public class SocketServer {
         printWriter.println("Your message Recieved");
         printWriter.flush();
         System.out.println("Server : Data Sent to Client");
+
         serverSocket.close();
 
 
