@@ -27,7 +27,7 @@ public class ProgramSerializableOne {
 class BankAccountHolderDetails implements Serializable {
     public String nameOfAccountHolder="HariHaran";
     public long accountNumber=1234567891234L;
-    public transient String password="Hari@2000#CNB4356"; //transient key word make it unavailable in serialization
+    public transient  String password="Hari@2000#CNB4356"; //transient key word make it unavailable in serialization
 
 
 }
