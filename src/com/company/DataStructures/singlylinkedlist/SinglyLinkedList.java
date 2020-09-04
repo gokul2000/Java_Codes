@@ -24,6 +24,20 @@ public class SinglyLinkedList {
 
         }
     }
+    public int lengthOfList(){
+        int cnt=0;
+        if(head==null){
+            return 0;
+        }
+        else{
+            Node curr=head;
+            while (curr!=null){
+                cnt++;
+                curr=curr.next;
+            }
+            return cnt;
+        }
+    }
     public void insertFirst(int data){
         Node newNode = new Node();
         newNode.data=data;
@@ -46,5 +60,29 @@ public class SinglyLinkedList {
             current=current.next;
         }
     }
+    public void insertAt(int index,int data)  {
+        Node current=head;
+        Node newNode=new Node();
+        if(index==0){
+            insertFirst(data);
+        }
+        else if(index>lengthOfList()||index<0){
+           System.out.println("Your index is not appropriate");
+        }
+        else {
+
+               int cont=0;
+               newNode.data=data;
+               while (cont<index-1){
+                   current=current.next;
+                   cont++;
+               }
+               Node t=current.next;
+               current.next=newNode;
+               newNode.next=t;
+
+        }
+    }
+
 
 }

@@ -18,6 +18,8 @@ public class Testing {
             System.out.println("1.Insert....");
             System.out.println("2.Insert at First...");
             System.out.println("3.Print List....");
+            System.out.println("4.Length of List...");
+            System.out.println("5.Insert at position...index starts from 0");
             System.out.println("Press any other number to exit...");
             int choice=scanner.nextInt();
             switch (choice){
@@ -28,6 +30,14 @@ public class Testing {
                 case 3->{
                     System.out.println("Showing List....");
                     singlyLinkedList.printList();
+                }
+                case 4->{
+                    System.out.println("Length of List...");
+                    System.out.println(singlyLinkedList.lengthOfList());
+                }
+                case 5->{
+                    System.out.println("Enter position followed by data");
+                    singlyLinkedList.insertAt(scanner.nextInt(),scanner.nextInt());
                 }
                 default -> {
                     System.out.println("Exiting..");
