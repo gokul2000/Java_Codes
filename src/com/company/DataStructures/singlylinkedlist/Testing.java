@@ -29,7 +29,9 @@ public class Testing {
                     System.out.println("Showing List....");
                     singlyLinkedList.printList();
                 }
-                default -> {cont=false;}
+                default -> {
+                    System.out.println("Exiting..");
+                    cont=false;}
             }
         }
 
