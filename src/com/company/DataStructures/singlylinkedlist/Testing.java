@@ -10,10 +10,12 @@ package com.company.DataStructures.singlylinkedlist;
 public class Testing {
     public static void main(String[] args) {
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+        singlyLinkedList.insertFirst(5);
         singlyLinkedList.insert(23);
         singlyLinkedList.insert(24);
         singlyLinkedList.insert(25);
         singlyLinkedList.insert(26);
+        singlyLinkedList.insertFirst(25);
         singlyLinkedList.printList();
     }
 }

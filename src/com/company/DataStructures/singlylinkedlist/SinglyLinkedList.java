@@ -24,6 +24,17 @@ public class SinglyLinkedList {
 
         }
     }
+    public void insertFirst(int data){
+        Node newNode = new Node();
+        newNode.data=data;
+        newNode.next=null;
+        if(head==null){
+            head=newNode;
+        }else{
+            newNode.next=head;
+            head=newNode;
+        }
+    }
     public void printList(){
         Node current=head;
         while (current!=null){
