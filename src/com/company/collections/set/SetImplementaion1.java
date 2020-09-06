@@ -39,7 +39,7 @@ public class SetImplementaion1 {
         }
         //as spliterator counts for stream operations so once a terminal operation or stream is closed then it doesnot execute for second time
         while (set.spliterator().tryAdvance(System.out::println)){
-            //as this while loop never exectes... and it is always false
+            //as this while loop never executes... and it is always false
         }
     }
 }
