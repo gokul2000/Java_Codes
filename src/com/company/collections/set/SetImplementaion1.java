@@ -33,7 +33,6 @@ public class SetImplementaion1 {
                 return 7;
             }
         };
-        //Printing using spliterator
         while (set.spliterator().tryAdvance(System.out::println)){
 
         }
@@ -41,5 +40,21 @@ public class SetImplementaion1 {
         while (set.spliterator().tryAdvance(System.out::println)){
             //as this while loop never executes... and it is always false
         }
+        AbstractSet<Integer> abstractSet = new TreeSet<>();
+        abstractSet.add(200);
+        abstractSet.add(100);
+        abstractSet.add(400);
+        abstractSet.add(300);
+        abstractSet.add(50);
+        abstractSet.add(13);
+        abstractSet.add(131);
+        abstractSet.add(113);
+        abstractSet.add(123);
+        abstractSet.add(13191);
+        System.out.println(abstractSet);
+        abstractSet.removeIf((x)->x%2==0);
+        System.out.println(abstractSet);
+        abstractSet.retainAll(Set.of(13,131,113,99));
+        System.out.println(abstractSet);
     }
 }
