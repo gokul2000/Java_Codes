@@ -5,6 +5,7 @@
 package com.company.DataStructures.singlylinkedlist;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -172,6 +173,11 @@ public class SinglyLinkedList {
             insertNext(i);
         }
 
+    }
+    public void addAll(Collection<Integer> collection){
+        for(int c:collection){
+            insert(c);
+        }
     }
 
 
