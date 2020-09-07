@@ -26,6 +26,7 @@ public class Testing {
             System.out.println("8.Sort List");
             System.out.println("9.Original List Before Sorting");
             System.out.println("10.Insert Last");
+            System.out.println("11.Descending Sort");
             System.out.println("Press any other number to exit...");
             int choice=scanner.nextInt();
             switch (choice){
@@ -53,7 +54,7 @@ public class Testing {
                     singlyLinkedList.clearAll();
                 }
                 case 8->{
-                    singlyLinkedList.SortList();
+                    singlyLinkedList.SortList(false);
 
                 }
                 case 9->{
@@ -62,6 +63,9 @@ public class Testing {
                 case 10->{
                     System.out.println("Enter");
                     singlyLinkedList.insertLast(scanner.nextInt());
+                }
+                case 11->{
+                    singlyLinkedList.SortList(true);
                 }
                 default -> {
                     System.out.println("Exiting..");

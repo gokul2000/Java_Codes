@@ -152,10 +152,14 @@ public class SinglyLinkedList {
             head=null;
         }
     }
-    public void SortList(){
+    public void SortList(boolean desc){
         if(head!=null){
             List<Integer> integerList = convertLinkedListtoList();
-            Collections.sort(integerList);
+            if(desc){
+                integerList.sort(Collections.reverseOrder());
+            }else {
+                Collections.sort(integerList);
+            }
             clearAll();
             for(int i:integerList){
                 insertNext(i);
