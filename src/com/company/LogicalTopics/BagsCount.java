@@ -4,96 +4,105 @@
 
 package com.company.LogicalTopics;
 
-/**
- * Created by Gokul on Sep,2020,08-09-2020 at 19:42
- */
+
 import java.util.*;
-import java.util.stream.*;
+
+
+/**
+ * Created by Gokul on Sep,2020,09-09-2020 at 09:56
+ */
 public class BagsCount {
-    static int C;
-    static List<List<Integer>> allPossibilites=new ArrayList<>();
-    public static boolean isPresent(List<Integer> list,int v){
-        for(int l:list){
-            if(l==v)
-                return false;
+    static Map<Integer,Integer> map = new LinkedHashMap<>();
+    static List<Integer> integerList;
+    static List<Integer> resultInteger=new ArrayList<>();
+    public static boolean checkWhetherFromAbove(int [][] matrix,int row,int col){
+        if(row==0||col==0){
+            return false;
         }
-        return true;
+        if(matrix[row][col]==matrix[row-1][col]){
+            return true;
+        }
+        return false;
     }
-    public static void findAllPossibilities(List<Integer> arr){
-        int u=0;
-        int b=2;
+    public static void checkPresent(int [][] matrix, int row,int col){
 
-        for(int i=0;i<arr.size();i++){
-            allPossibilites.add(List.of(arr.get(i)));
-
-        }
-        for(int i=0;i<=arr.size()-b;i++){
-
-            for(int j=i+1;j<=arr.size()-(b-1);j++){
-                List<Integer> array=new ArrayList<>();
-                array.add(arr.get(i));
-                for(int k=j;k<j+(b-1);k++){
-                    array.add(arr.get(k));
-                }
-                allPossibilites.add(array);
+            if (row < 0 || col <0) {
+                return;
             }
-
-        }
-        int k=3;
-
-
-        while(k<=arr.size()){
-            for(int i=0;i<allPossibilites.size();i++){
-                if(allPossibilites.get(i).size()==k-1){
-                    List<Integer> lit = new ArrayList<>(allPossibilites.get(i));
-                    for(int v=0;v<arr.size();v++){
-                        if(isPresent(lit,arr.get(v))){
-                            lit.add(arr.get(v));
-                            allPossibilites.add(lit);
-                            lit=null;
-                            lit=new ArrayList<>(allPossibilites.get(i));
-                        }
-                    }
-                }
+            while (checkWhetherFromAbove(matrix, row, col)) {
+                row--;
             }
-            k++;
-        }
+            resultInteger.add(integerList.get(row));
+            int minusFactor = integerList.get(row);
+            int k = row - 1;
+            int j = col - minusFactor;
+            if(k<0||j<0)
+                return;
+            checkPresent(matrix, k,j);
 
 
-
-
-    }
-    public static boolean sumOfList(List<Integer> list){
-        int c= list.stream().reduce((x1,x2)->x1+x2).get();
-        return c<=C?true:false;
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Map<Integer,Integer> map = new LinkedHashMap<>();
-        int N=sc.nextInt();
-        C=sc.nextInt();
-        for(int i=0;i<N;i++)
+        List<Integer> results = new ArrayList<>();
+        int N,C;
+        N= sc.nextInt();C= sc.nextInt();
+        int [][] matrix=new int[N][C+1];
+        for(int i=0;i<N;i++){
             map.put(sc.nextInt(),sc.nextInt());
-        List<Map.Entry<Integer,Integer>>mapList=map.entrySet().stream().collect(Collectors.toList());
-        List<Map.Entry<Integer,Integer>>sortedKeys=map.entrySet().stream().sorted((map1,map2)->-(map1.getValue().compareTo(map2.getValue()))).collect(Collectors.toList());
-        Map<Integer,List<Integer>> mapResult = new TreeMap<>(Collections.reverseOrder());
-        List<Integer>keySet=sortedKeys.stream().map(Map.Entry::getKey).collect(Collectors.toList());
-        findAllPossibilities(keySet);
-        List<List<Integer>> filtered = allPossibilites.stream().filter(BagsCount::sumOfList).collect(Collectors.toList());
-        for(List<Integer> listInteger : filtered){
+        }
+        integerList = new ArrayList<>(map.keySet());
+        for(int i=0;i<N;i++){
+            for(int j=0;j<=C;j++){
+                if(i==0){
+                    if(j>=integerList.get(i)){
+                        matrix[i][j]=map.get(integerList.get(i));
+                    }
+                    else{
+                        matrix[i][j]=0;
 
-            int sum=0;
-            for(int k:listInteger){
-                sum+=map.get(k);
+                    }
+                }
+                else{
+                    if(j>=integerList.get(i)){
+                       matrix[i][j]=Math.max(matrix[i-1][j],(map.get(integerList.get(i))+matrix[i-1][j-(integerList.get(i))])) ;
+                    }else{
+                        matrix[i][j]=matrix[i-1][j];
+                    }
+                }
             }
-            mapResult.put(sum,listInteger);
         }
-        List<Map.Entry<Integer,List<Integer>>> resultInteger=new ArrayList<>(mapResult.entrySet());
-        List<Integer> result=resultInteger.get(0).getValue();
-        Set<Integer> set = map.keySet();
-        for(int k:set){
-            if(!isPresent(result,k))
-                System.out.print(k+" ");
+
+//        for(int i=0;i<N;i++){
+//            for(int j=0;j<C+1;j++){
+//                System.out.print(matrix[i][j]+" ");
+//            }
+//            System.out.println();
+//        }
+        int result=matrix[N-1][C];
+        int j=C;
+        int i=N-1;
+        while (i>=0){
+            if(i==0){
+                break;
+            }
+            if(checkWhetherFromAbove(matrix,i,j)){
+                i--;
+            }else{
+                break;
+            }
         }
+        int rows=i;
+        results.add(integerList.get(rows));
+        boolean r=true;
+        int columns=C;
+        checkPresent(matrix,rows,columns);
+        Collections.reverse(resultInteger);
+        System.out.println(resultInteger);
+
+
+
+
+
     }
 }
