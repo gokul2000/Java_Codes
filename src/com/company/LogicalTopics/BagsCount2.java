@@ -4,6 +4,7 @@
 
 package com.company.LogicalTopics;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Gokul on Sep,2020,09-09-2020 at 14:25
@@ -11,7 +12,7 @@ import java.util.*;
 
 public class BagsCount2 {
     static Map<Integer,Integer> map=new LinkedHashMap<>();
-    static Map<Double,Integer> mapResult = new TreeMap<>(Collections.reverseOrder());
+    static Map<Integer,Double> mapResult = new LinkedHashMap<>();
     static int C,N;
 
     public static void main(String[] args) {
@@ -23,15 +24,26 @@ public class BagsCount2 {
             int c=sc.nextInt();
             map.put(r,c);
             Double d = ((double)(c/(double)r));
-            mapResult.put(d,r);
+            mapResult.put(r,d);
         }
         int K=C;
         List<Integer> integerList = new ArrayList<>();
-        List<Map.Entry<Double,Integer>> mapList = new ArrayList<>(mapResult.entrySet());
-        for(Map.Entry<Double,Integer> mapValue :mapList){
-            if(mapValue.getValue()<=K){
-                integerList.add(mapValue.getValue());
-                K-=mapValue.getValue();
+        List<Map.Entry<Integer,Double>> mapList = mapResult.entrySet().stream().sorted(
+                new Comparator<Map.Entry<Integer, Double>>() {
+                    @Override
+                    public int compare(Map.Entry<Integer, Double> o1, Map.Entry<Integer, Double> o2) {
+                        if(o1.getValue()==o2.getValue()){
+                            return -map.get(o1.getKey()).compareTo(map.get(o2.getKey()));
+                        }
+                        return -o1.getValue().compareTo(o2.getValue());
+                    }
+                }
+        ).collect(Collectors.toList());
+
+        for(Map.Entry<Integer,Double> mapValue :mapList){
+            if(mapValue.getKey()<=K){
+                integerList.add(mapValue.getKey());
+                K-=mapValue.getKey();
             }
         }
         Set<Integer> integerSet = map.keySet();
@@ -40,7 +52,6 @@ public class BagsCount2 {
                 System.out.print(keys+" ");
             }
         }
-
 
     }
 }

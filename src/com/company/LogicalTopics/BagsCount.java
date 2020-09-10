@@ -32,6 +32,7 @@ public class BagsCount {
             while (checkWhetherFromAbove(matrix, row, col)) {
                 row--;
             }
+            if(matrix[row][col]!=0)
             resultInteger.add(integerList.get(row));
             int minusFactor = integerList.get(row);
             int k = row - 1;
@@ -96,6 +97,12 @@ public class BagsCount {
         results.add(integerList.get(rows));
         boolean r=true;
         int columns=C;
+        for(int ia=0;ia<N;ia++){
+            for(int ja=0;ja<=C;ja++){
+                System.out.print(matrix[ia][ja]+" ");
+            }
+            System.out.println();
+        }
         checkPresent(matrix,rows,columns);
         Collections.reverse(resultInteger);
         System.out.println(resultInteger);
