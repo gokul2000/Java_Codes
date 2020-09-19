@@ -4,6 +4,8 @@
 
 package com.company.LogicalTopics;
 
+import java.util.Scanner;
+
 /**
  * Created by Gokul on Sep,2020,19-09-2020 at 19:32
  */
@@ -46,10 +48,14 @@ public class RatMaze {
     }
 
     public static void main(String[] args) {
-        int [][] paths = new int [] []{{1,1,0,0},
-                                       {0,1,1,0},
-                                       {0,1,0,0},
-                                       {0,1,1,1}};
+        Scanner sc = new Scanner(System.in);
+        int a= sc.nextInt();
+        int [][] paths = new int [a][a];
+        for(int i=0;i<a;i++){
+            for(int j=0;j<a;j++){
+                paths[i][j]= sc.nextInt();
+            }
+        }
         findPath(paths,paths.length);
 
 
