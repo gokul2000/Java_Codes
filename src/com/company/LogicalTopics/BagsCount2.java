@@ -32,7 +32,7 @@ public class BagsCount2 {
                 new Comparator<Map.Entry<Integer, Double>>() {
                     @Override
                     public int compare(Map.Entry<Integer, Double> o1, Map.Entry<Integer, Double> o2) {
-                        if(o1.getValue()==o2.getValue()){
+                        if(o1.getValue() ==o2.getValue()){
                             return -map.get(o1.getKey()).compareTo(map.get(o2.getKey()));
                         }
                         return -o1.getValue().compareTo(o2.getValue());

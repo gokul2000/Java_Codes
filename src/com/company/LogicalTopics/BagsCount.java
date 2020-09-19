@@ -97,12 +97,6 @@ public class BagsCount {
         results.add(integerList.get(rows));
         boolean r=true;
         int columns=C;
-        for(int ia=0;ia<N;ia++){
-            for(int ja=0;ja<=C;ja++){
-                System.out.print(matrix[ia][ja]+" ");
-            }
-            System.out.println();
-        }
         checkPresent(matrix,rows,columns);
         Collections.reverse(resultInteger);
         System.out.println(resultInteger);
