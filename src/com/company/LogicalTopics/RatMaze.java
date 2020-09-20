@@ -14,7 +14,7 @@ public class RatMaze {
         return (row<paths.length&&col<paths[0].length&&row>=0&&col>=0&&paths[row][col]==1);
     }
     private static boolean findPathSafety(int [][] arr,int[][] solution,int row,int col){
-        if(row== arr.length-1&&col==arr[0].length-1&&arr[row][col]==1){
+        if(row== arr.length-1&&col==arr.length-1&&arr[row][col]==1){
             solution[row][col]=1;
             return true;
         }
